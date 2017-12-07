@@ -3,8 +3,6 @@ using System.Collections.Generic;
 
 namespace Interview
 {
-    // Please create an in memory implementation of IRepository<T> 
-
     public interface IRepository<T> where T : IStoreable
     {
         IEnumerable<T> All();
