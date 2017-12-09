@@ -124,19 +124,19 @@ namespace Interview.Test
         }
 
         [Test]
-        public void Check_Repository_Is_Unchanged_When_Delete_Called_For_Unknown_Object_With_Same_Data()
+        public void Check_Item_Is_Returned_When_Finding_Existing_Record()
         {
             IRepository<IStoreable> repository = new Repository<IStoreable>();
             IStoreable storeable6 = StoreableHelper.GetAStoreable().WithBook(BookHelper.GetABookWithId(6));
-            IStoreable storeableOther6 = StoreableHelper.GetAStoreable().WithBook(BookHelper.GetABookWithId(6));
+            IStoreable storeable9 = StoreableHelper.GetAStoreable().WithBook(BookHelper.GetABookWithId(9));
 
             repository.Save(storeable6);
-            repository.Delete(storeableOther6.Id);
+            repository.Save(storeable9);
+            IStoreable result = repository.FindById(storeable9.Id);
 
-            Assert.IsNotEmpty(repository.All());
-            Assert.AreSame(storeable6, repository.All().Single(), "Wrong item deleted from the repository.");
+            Assert.AreSame(storeable9, result, "Wrong item returned from the repository.");
         }
-
+        
         [TestFixtureTearDown]
         public void Dispose()
         {
