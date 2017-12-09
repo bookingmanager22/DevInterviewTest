@@ -21,11 +21,21 @@ namespace Interview
         {
             T data = this.FindById(id);
 
+            if (data == null)
+            {
+                return;
+            }
+
             this.list.Remove(data);
         }
 
         public T FindById(System.IComparable id)
         {
+            if (id == null)
+            {
+                return default(T);
+            }
+
             return this.list.FirstOrDefault(item => item.Id.CompareTo(id) == 0);
         }
 
