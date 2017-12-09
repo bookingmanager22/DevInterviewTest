@@ -26,12 +26,12 @@ namespace Interview
 
         public int CompareTo(object obj)
         {
-            if (obj.GetType() != GetType())
+            if (obj == null || obj.GetType() != GetType())
             {
                 return -1;
             }
 
-            if (obj != null && !(obj is Book))
+            if (!(obj is Book))
             {
                 throw new ArgumentException("Object must be of type Book.");
             }
