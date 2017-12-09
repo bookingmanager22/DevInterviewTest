@@ -136,6 +136,19 @@ namespace Interview.Test
 
             Assert.AreSame(storeable9, result, "Wrong item returned from the repository.");
         }
+
+        [Test]
+        public void Check_Null_Is_Returned_When_Finding_Unknown_Record()
+        {
+            IRepository<IStoreable> repository = new Repository<IStoreable>();
+            IStoreable storeable6 = StoreableHelper.GetAStoreable().WithBook(BookHelper.GetABookWithId(6));
+            IStoreable storeable9 = StoreableHelper.GetAStoreable().WithBook(BookHelper.GetABookWithId(9));
+
+            repository.Save(storeable6);
+            IStoreable result = repository.FindById(storeable9.Id);
+
+            Assert.IsNull(result);
+        }
         
         [TestFixtureTearDown]
         public void Dispose()
