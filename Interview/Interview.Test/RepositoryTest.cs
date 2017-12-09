@@ -123,6 +123,20 @@ namespace Interview.Test
             Assert.AreSame(storeable6, repository.All().Single(), "Wrong item deleted from the repository.");
         }
 
+        [Test]
+        public void Check_Repository_Is_Unchanged_When_Delete_Called_For_Unknown_Object_With_Same_Data()
+        {
+            IRepository<IStoreable> repository = new Repository<IStoreable>();
+            IStoreable storeable6 = StoreableHelper.GetAStoreable().WithBook(BookHelper.GetABookWithId(6));
+            IStoreable storeableOther6 = StoreableHelper.GetAStoreable().WithBook(BookHelper.GetABookWithId(6));
+
+            repository.Save(storeable6);
+            repository.Delete(storeableOther6.Id);
+
+            Assert.IsNotEmpty(repository.All());
+            Assert.AreSame(storeable6, repository.All().Single(), "Wrong item deleted from the repository.");
+        }
+
         [TestFixtureTearDown]
         public void Dispose()
         {
