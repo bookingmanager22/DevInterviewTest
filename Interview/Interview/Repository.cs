@@ -32,6 +32,8 @@ namespace Interview
             {
                 return;
             }
+
+            this.list.Add(item);
         }
     }
 }
