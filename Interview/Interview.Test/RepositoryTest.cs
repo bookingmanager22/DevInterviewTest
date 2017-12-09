@@ -66,6 +66,19 @@ namespace Interview.Test
             Assert.AreEqual(2, repository.All().Count(), "Invalid number of items in repository.");
         }
 
+        [Test]
+        public void Check_Only_One_Record_Created_When_Same_Item_Is_Saved_Twice()
+        {
+            IRepository<IStoreable> repository = new Repository<IStoreable>();
+            IStoreable storeable6 = StoreableHelper.GetAStoreable().WithBook(BookHelper.GetABookWithId(6));
+
+            repository.Save(storeable6);
+            repository.Save(storeable6);
+
+            Assert.IsNotEmpty(repository.All());
+            Assert.AreEqual(1, repository.All().Count(), "Invalid number of items in repository.");
+        }
+
         [TestFixtureTearDown]
         public void Dispose()
         {
