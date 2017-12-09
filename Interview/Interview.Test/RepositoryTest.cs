@@ -109,6 +109,20 @@ namespace Interview.Test
             Assert.AreEqual(2, repository.All().Count(), "Invalid number of items in repository.");
         }
 
+        [Test]
+        public void Check_Repository_Is_Unchanged_When_Delete_Called_For_Unknown_Data()
+        {
+            IRepository<IStoreable> repository = new Repository<IStoreable>();
+            IStoreable storeable6 = StoreableHelper.GetAStoreable().WithBook(BookHelper.GetABookWithId(6));
+            IStoreable storeable9 = StoreableHelper.GetAStoreable().WithBook(BookHelper.GetABookWithId(9));
+
+            repository.Save(storeable6);
+            repository.Delete(storeable9.Id);
+
+            Assert.IsNotEmpty(repository.All());
+            Assert.AreSame(storeable6, repository.All().Single(), "Wrong item deleted from the repository.");
+        }
+
         [TestFixtureTearDown]
         public void Dispose()
         {
