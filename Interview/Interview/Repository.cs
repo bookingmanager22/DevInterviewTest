@@ -28,6 +28,11 @@ namespace Interview
 
         public void Save(T item)
         {
+            if (item == null)
+            {
+                return;
+            }
+
             this.list.Add(item);
         }
     }
