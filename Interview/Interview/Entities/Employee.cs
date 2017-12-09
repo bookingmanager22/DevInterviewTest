@@ -6,33 +6,33 @@ namespace Interview.Entities
     {
         int id;
 
-        public Employee(int id)
+        public Employee(int newId)
         {
-            this.id = id;
+            this.id = newId;
         }
 
-        public int CompareTo(object obj)
+        public int CompareTo(object employee)
         {
-            if (obj == null || obj.GetType() != GetType())
+            if (employee == null || employee.GetType() != GetType())
             {
                 return -1;
             }
 
-            if (!(obj is Employee))
+            if (!(employee is Employee))
             {
                 throw new ArgumentException("Object must be of type Employee.");
             }
 
-            return CompareTo(obj as Employee);
+            return CompareTo(employee as Employee);
         }
 
-        private int CompareTo(Employee other)
+        private int CompareTo(Employee employee)
         {
-            if (id == other.id)
+            if (id == employee.id)
             {
                 return 0;
             }
-            else if (id > other.id)
+            else if (id > employee.id)
             {
                 return 1;
             }

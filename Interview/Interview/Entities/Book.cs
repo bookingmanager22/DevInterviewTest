@@ -4,35 +4,35 @@ namespace Interview.Entities
 {
     public class Book : IComparable
     {
-        int id;
+        private int id;
 
-        public Book(int id)
+        public Book(int newId)
         {
-            this.id = id;
+            this.id = newId;
         }
 
-        public int CompareTo(object obj)
+        public int CompareTo(object book)
         {
-            if (obj == null || obj.GetType() != GetType())
+            if (book == null || book.GetType() != GetType())
             {
                 return -1;
             }
 
-            if (!(obj is Book))
+            if (!(book is Book))
             {
                 throw new ArgumentException("Object must be of type Book.");
             }
 
-            return CompareTo(obj as Book);
+            return CompareTo(book as Book);
         }
 
-        private int CompareTo(Book other)
+        private int CompareTo(Book book)
         {
-            if (id == other.id)
+            if (id == book.id)
             {
                 return 0;
             }
-            else if (id > other.id)
+            else if (id > book.id)
             {
                 return 1;
             }
