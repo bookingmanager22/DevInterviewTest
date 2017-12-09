@@ -19,7 +19,9 @@ namespace Interview
 
         public void Delete(System.IComparable id)
         {
-            this.list.RemoveWhere(item => item.Id.CompareTo(id) == 0);
+            T data = this.FindById(id);
+
+            this.list.Remove(data);
         }
 
         public T FindById(System.IComparable id)
