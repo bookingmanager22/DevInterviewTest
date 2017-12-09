@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Interview.Test.Helpers;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,9 +25,16 @@ namespace Interview.Test
         }
 
         [Test]
-        public void Check_Repository_Is_Unchanged_When_Save_Called_With_Null()
+        public void Check_Repository_Handles_Save_Called_With_Null()
         {
+            // Arrange
+            IRepository<IStoreable> repository = new Repository<IStoreable>();
 
+            //Act
+            repository.Save(null);
+
+            //Assert
+            Assert.IsEmpty(repository.All());
         }
 
         [TestFixtureTearDown]

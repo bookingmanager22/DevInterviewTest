@@ -13,7 +13,7 @@ namespace Interview
 
         public IEnumerable<T> All()
         {
-            throw new System.NotImplementedException();
+            return list;
         }
 
         public void Delete(System.IComparable id)
@@ -28,7 +28,7 @@ namespace Interview
 
         public void Save(T item)
         {
-            throw new System.NotImplementedException();
+            this.list.Add(item);
         }
     }
 }
