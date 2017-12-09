@@ -149,6 +149,20 @@ namespace Interview.Test
 
             Assert.IsNull(result);
         }
+
+        [Test]
+        public void Check_Null_Is_Returned_When_Find_Called_With_Null()
+        {
+            IRepository<IStoreable> repository = new Repository<IStoreable>();
+            IStoreable storeable6 = StoreableHelper.GetAStoreable().WithBook(BookHelper.GetABookWithId(6));
+            IStoreable storeable9 = StoreableHelper.GetAStoreable().WithBook(BookHelper.GetABookWithId(9));
+
+            repository.Save(storeable6);
+            repository.Save(storeable9);
+            IStoreable result = repository.FindById(null);
+
+            Assert.IsNull(result);
+        }
         
         [TestFixtureTearDown]
         public void Dispose()
