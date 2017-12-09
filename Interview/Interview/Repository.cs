@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Interview
 {
@@ -23,7 +24,7 @@ namespace Interview
 
         public T FindById(System.IComparable id)
         {
-            throw new System.NotImplementedException();
+            return this.list.FirstOrDefault(item => item.Id.CompareTo(id) == 0);
         }
 
         public void Save(T item)
