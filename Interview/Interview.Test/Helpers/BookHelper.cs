@@ -1,4 +1,6 @@
-﻿namespace Interview.Test.Helpers
+﻿using Interview.Entities;
+
+namespace Interview.Test.Helpers
 {
     public static class BookHelper
     {

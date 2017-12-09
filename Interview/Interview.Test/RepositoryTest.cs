@@ -1,5 +1,6 @@
 ﻿using Interview.Test.Helpers;
 using NUnit.Framework;
+using System;
 using System.Linq;
 
 namespace Interview.Test
@@ -158,6 +159,20 @@ namespace Interview.Test
             IStoreable result = repository.FindById(null);
 
             Assert.IsNull(result);
+        }
+
+        [Test]
+        public void Check_Item_Is_Returned_When_Finding_Existing_Record_With_Different_Types_In_Repository()
+        {
+            IRepository<IStoreable> repository = new Repository<IStoreable>();
+            IStoreable storeable6 = StoreableHelper.GetAStoreable().WithBook(BookHelper.GetABookWithId(6));
+            IStoreable storeable9 = StoreableHelper.GetAStoreable().WithEmployee(EmployeeHelper.GetAnEmployeeWithId(9));
+
+            repository.Save(storeable6);
+            repository.Save(storeable9);
+            IStoreable result = repository.FindById(storeable9.Id);
+
+            Assert.AreSame(storeable9, result, "Wrong item returned from the repository.");
         }
         
         [TestFixtureTearDown]

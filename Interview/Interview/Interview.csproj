@@ -62,7 +62,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Book.cs" />
+    <Compile Include="Entities\Employee.cs" />
+    <Compile Include="Entities\Book.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IStoreable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
