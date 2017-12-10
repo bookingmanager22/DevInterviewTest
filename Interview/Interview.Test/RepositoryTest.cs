@@ -174,7 +174,7 @@ namespace Interview.Test
 
             Assert.AreSame(storeable9, result, "Wrong item returned from the repository.");
         }
-        
+
         [TestFixtureTearDown]
         public void Dispose()
         {
